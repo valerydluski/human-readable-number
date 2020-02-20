@@ -1,7 +1,7 @@
 module.exports = function toReadable (number) {
     let result = '';
     let arr0_9 = ['zero','one','two','three','four','five','six','seven','eight','nine'];
-    if(number>0 && number<10){
+    if(number>=0 && number<10){
         result = arr0_9[number];
         return result;
     }
@@ -24,5 +24,35 @@ module.exports = function toReadable (number) {
             return result; 
         }
     }
+    if (number>99 && number<1000){
+        let hundred =  Math.floor(number/100);
+        let ostatokHundred = number%100;
+        let decade = Math.floor(ostatokHundred/10);
+        let ostatok = ostatokHundred%10;
+ 
+        if (ostatokHundred==0){
+             result = arr0_9[hundred] + ' hundred';
+             return result;
+        }
+        if(ostatokHundred>0 && ostatokHundred<10) {
+             result = arr0_9[hundred] + ' hundred ' + arr0_9[ostatokHundred];
+             return result;  
+        }
+        if(ostatokHundred>9 && ostatokHundred<20){
+         let ostatok=ostatokHundred%10;
+         result = arr0_9[hundred] + ' hundred ' + arr10_19[ostatok];
+         return result;
+        }
+        if(ostatokHundred>19 && ostatokHundred<100){
+         if (ostatok==0){
+             result = arr0_9[hundred] + ' hundred ' + arr3[decade];
+             return result;
+         }
+         if (ostatok>0){
+             result = arr0_9[hundred] + ' hundred ' + arr3[decade] + ' ' + arr0_9[ostatok];
+             return result;  
+         }
+         }     
+     }
     
 }
