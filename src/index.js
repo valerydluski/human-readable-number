@@ -14,7 +14,7 @@ module.exports = function toReadable (number) {
     let arr3 = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety']
     if(number>19 && number<100){
         let ostatok = number%10;
-        let decade = Math.ceil(number/10);
+        let decade = Math.floor(number/10);
         if (ostatok==0){
             result = arr3[decade];
             return result;
